@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { reset } from '../actions/board';
 import { Field } from '../components';
 
 export default class Game extends Component {
   constructor(props){
     super(props);
-  }
 
-  onClick(){
-    console.log('Click');
+    this.renderScore = this.renderScore.bind(this);
   }
 
   renderField(){
@@ -23,19 +22,35 @@ export default class Game extends Component {
     return fields;
   }
 
-  renderScore(winner){
-    console.log('Render', winner);
+  renderScore(){
+    const { game: { winner }, reset } = this.props;
+
     if(winner === 'O'){
-      return <div className="alert alert-danger" role="alert">Game ower.</div>;
+      return (
+        <div className="alert alert-danger" role="alert">Game ower.
+          <button onClick={reset} />
+        </div>
+        );
     }
     else if(winner === 'X'){
-      return <div className="alert alert-success" role="alert">You win!</div>;
+      return (
+        <div className="alert alert-success" role="alert">You win!
+          <button onClick={reset}>Restart</button>
+        </div>
+      );
+    }
+    else if(winner === 'draw'){
+      return (
+        <div className="alert alert-warning" role="alert">Draw.
+          <button onClick={reset}>Restart</button>
+        </div>
+      );
     }
     return null;
   }
 
   render(){
-    const { player, winner } = this.props.game;
+    const { player } = this.props.game;
 
     return (
       <div className="container">
@@ -47,7 +62,7 @@ export default class Game extends Component {
             </div>
           </div>
         </div>
-        {this.renderScore(winner)}
+        {this.renderScore()}
       </div>
     );
   }
@@ -57,4 +72,4 @@ const mapStateToProps = ({ game }) =>  {
   return { game };
 };
 
-export default connect(mapStateToProps)(Game);
+export default connect(mapStateToProps, { reset })(Game);
