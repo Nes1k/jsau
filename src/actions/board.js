@@ -23,7 +23,7 @@ export const select = (coords) => {
         } else {
           xy = random(board);
           if(xy){
-            dispatch(select(random(board)));
+            dispatch(select(xy));
           } else {
             dispatch(_setwinner('draw'));
           }
