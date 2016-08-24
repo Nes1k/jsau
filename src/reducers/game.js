@@ -14,6 +14,7 @@ const INITIAL_STATE = {
 export default (state = _.cloneDeep(INITIAL_STATE), action) => {
   switch(action.type){
     case types.RESET:
+      // keep clean initial state for futher use
       return _.cloneDeep(INITIAL_STATE);
     case types.SELECT:
       const newState = {...state};

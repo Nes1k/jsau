@@ -74,7 +74,8 @@ const check = (table, {Y, X}) => {
 	}
 };
 
-const where = (table, check='O', ret=false) => {
+// check where put sign
+const where = (table, check='O') => {
 	let player = 0;
 	let free;
 	const cross_x = [2, 1, 0];
@@ -140,12 +141,10 @@ const where = (table, check='O', ret=false) => {
 		}
 
 	}
-  if(ret){
-    return free;
-  }
   return null;
 };
 
+// return first free field
 const random = (board) =>{
   for(let x = 0; x < 3; x++){
     for(let y = 0; y < 3; y++){

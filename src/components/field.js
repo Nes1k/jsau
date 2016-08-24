@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions/board';
@@ -10,6 +10,5 @@ const Field = ({value, block, X, Y, select, ...props}) => {
     </div>
   );
 };
-
 
 export default connect(null, actions)(Field);
