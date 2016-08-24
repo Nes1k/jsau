@@ -1,5 +1,5 @@
 import * as types from '../actions/types';
-
+import _ from 'lodash';
 
 const INITIAL_STATE = {
   winner: null,
@@ -11,10 +11,10 @@ const INITIAL_STATE = {
   ]
 };
 
-export default (state = Object.assign({}, INITIAL_STATE), action) => {
+export default (state = _.cloneDeep(INITIAL_STATE), action) => {
   switch(action.type){
     case types.RESET:
-      return {...INITIAL_STATE};
+      return _.cloneDeep(INITIAL_STATE);
     case types.SELECT:
       const newState = {...state};
       newState.player = state.player === 'O' ? 'X' : 'O';

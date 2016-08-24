@@ -12,11 +12,11 @@ export default class Game extends Component {
   }
 
   renderField(){
-    const { board } = this.props.game;
+    const { board, winner } = this.props.game;
     const fields = [];
     for(let y = 0; y < 3; y++){
       for(let x = 0; x < 3; x++){
-        fields.push(<Field key={`${x}${y}`} value={board[y][x]} Y={y} X={x} />);
+        fields.push(<Field key={`${x}${y}`} block={winner} value={board[y][x]} Y={y} X={x} />);
       }
     }
     return fields;
@@ -28,7 +28,7 @@ export default class Game extends Component {
     if(winner === 'O'){
       return (
         <div className="alert alert-danger" role="alert">Game ower.
-          <button onClick={reset} />
+          <button onClick={reset}>Restart</button>
         </div>
         );
     }
